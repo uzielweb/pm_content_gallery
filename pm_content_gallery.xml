@@ -2,16 +2,16 @@
 <extension version="5.0" type="plugin" group="content" method="upgrade">
     <name>plg_content_pm_content_gallery</name>
     <author>Ponto Mega</author>
-    <creationDate>2020-2-18</creationDate>
+    <creationDate>2026-2-23</creationDate>
     <copyright>Created by Ponto Mega</copyright>
     <license>GNU/Public</license>
     <authorEmail>contato@pontomega.com.br</authorEmail>
     <authorUrl>pontomega.com.br</authorUrl>
-    <version>1.2.3</version>
+    <version>1.3.0</version>
     <description>PLG_CONTENT_PM_CONTENT_GALLERY_XML_DESCRIPTION</description>
     <updateservers>
-		<server type="extension" priority="1" name="plg_content_pm_content_gallery">https://raw.githubusercontent.com/uzielweb/zero/pm_content_gallery/pm_content_gallery_updates.xml</server>
-	</updateservers>
+        <server type="extension" priority="1" name="plg_content_pm_content_gallery">https://raw.githubusercontent.com/uzielweb/zero/pm_content_gallery/pm_content_gallery_updates.xml</server>
+    </updateservers>
     <files>
         <filename plugin="pm_content_gallery">pm_content_gallery.php</filename>
         <folder>fields</folder>
@@ -26,22 +26,23 @@
     <config>
         <fields name="params">
             <fieldset name="GALLERY_CONFIG">
-                <field type="radio" name="gallery_type" label="GALLERY_TYPE" default="owl_carousel" description="GALLERY_TYPE_DESC"  class="btn-group">
+                <field type="radio" name="gallery_type" label="GALLERY_TYPE" default="owl_carousel" description="GALLERY_TYPE_DESC" class="btn-group">
                     <option value="owl_carousel">OWL_CAROUSEL</option>
                     <option value="bootstrap_carousel">BOOTSTRAP_CAROUSEL</option>
                     <option value="grid">GRID</option>
+                    <option value="masonry">MASONRY</option>
                 </field>
                 <field name="thumbnail_width" label="THUMBNAIL_WIDTH" type="text" default="300" description="THUMBNAIL_WIDTH_DESC" />
                 <field name="thumbnail_height" label="THUMBNAIL_HEIGHT" type="text" default="300" description="THUMBNAIL_HEIGHT_DESC" />
 
                 <field name="images_per_row" type="text" default="1" label="PLG_CONTENT_PM_CONTENT_GALLERY_FIELD_IMAGES_PER_ROW_LABEL" description="PLG_CONTENT_PM_CONTENT_GALLERY_FIELD_IMAGES_PER_ROW_DESC" />
-       
+
                 <field name="show_name" label="SHOW_NAME" type="radio" class="btn-group" default="0">
                     <option value="0">JNONE</option>
                     <option value="show_image_name">SHOW_IMAGE_NAME</option>
                     <option value="show_album_name_sequence">SHOW_ALBUM_NAME_SEQUENCE</option>
                 </field>
-         
+
                 <field name="height" label="HEIGHT" type="list" default="16by9" description="HEIGHT_DESC">
                     <option value="21by9">ULTRAWIDESCREEN</option>
                     <option value="16by9">WIDESCREEN</option>
@@ -54,38 +55,51 @@
                     <option value="1">JYES</option>
                 </field>
 
-                <field name="loop" label="LOOP" type="radio"  class="btn-group" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel">
-                    
+                <field name="loop" label="LOOP" type="radio" class="btn-group" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel">
+
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
                 <field name="autoplay" label="AUTOPLAY" type="radio" class="btn-group" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel">
-                   
+
                     <option value="0">JNO</option>
-                     <option value="1">JYES</option>
+                    <option value="1">JYES</option>
                 </field>
                 <field name="nav" label="NAV" type="radio" class="btn-group" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel">
-                
+
                     <option value="0">JNO</option>
-                        <option value="1">JYES</option>
+                    <option value="1">JYES</option>
                 </field>
                 <field name="dots" label="DOTS" type="radio" class="btn-group" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel">
-                    
+
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
                 <field name="lazyload" label="LAZYLOAD" type="radio" class="btn-group" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel">
-                   
+
                     <option value="0">JNO</option>
-                     <option value="1">JYES</option>
+                    <option value="1">JYES</option>
                 </field>
-                <field name="dotseach" label="DOTSEACH" type="text" default="1" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel" />
-                <field name="dotseach" label="DOTSEACH" type="text" default="1" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel" />
+                <field name="dotseach" label="PLG_CONTENT_PM_CONTENT_GALLERY_DOTSEACH" type="text" default="1" showon="gallery_type:owl_carousel[OR]gallery_type:bootstrap_carousel" />
             </fieldset>
             <fieldset name="basic">
                 <field name="customtagname" label="Tag" type="text" default="pmgallery" description="Tag" />
                 <field name="folder" type="text" folder="images" default="images" label="PLG_CONTENT_PM_CONTENT_GALLERY_FIELD_FOLDER_LABEL" description="PLG_CONTENT_PM_CONTENT_GALLERY_FIELD_FOLDER_DESC" />
-              </fieldset>
+            </fieldset>
+            <fieldset name="advanced" label="JGLOBAL_FIELDSET_ADVANCED">
+                <field name="load_bootstrap" label="PLG_CONTENT_PM_CONTENT_GALLERY_LOAD_BOOTSTRAP" description="PLG_CONTENT_PM_CONTENT_GALLERY_LOAD_BOOTSTRAP_DESC" type="radio" layout="joomla.form.field.radio.switcher" default="1" filter="integer" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="load_jquery" label="PLG_CONTENT_PM_CONTENT_GALLERY_LOAD_JQUERY" description="PLG_CONTENT_PM_CONTENT_GALLERY_LOAD_JQUERY_DESC" type="radio" layout="joomla.form.field.radio.switcher" default="1" filter="integer" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="load_owl" label="PLG_CONTENT_PM_CONTENT_GALLERY_LOAD_OWL" description="PLG_CONTENT_PM_CONTENT_GALLERY_LOAD_OWL_DESC" type="radio" layout="joomla.form.field.radio.switcher" default="1" filter="integer" class="btn-group" showon="gallery_type:owl_carousel">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
         </fields>
     </config>
 </extension>
