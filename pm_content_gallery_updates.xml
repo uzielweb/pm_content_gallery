@@ -8,7 +8,7 @@
     <downloads>
       <downloadurl type="full" format="zip">https://github.com/uzielweb/pm_content_gallery/archive/refs/tags/pm_content_gallery-v1.3.0.zip</downloadurl>
     </downloads>
-    <type>template</type>
+    <type>plugin</type>
     <maintainer>Uziel via Ponto Mega</maintainer>
     <maintainerurl>https://www.pontomega.com.br</maintainerurl>
     <section>Updates</section>
